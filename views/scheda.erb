@@ -1,0 +1,8 @@
+<h1>Ecco la tua scheda carburante compilata!</h1>
+<% scheda.rifornimenti.each do |rifornimento| %>
+<ul>
+  <li>Km percorsi: <%= rifornimento[:km] %></li>
+  <li>Km totali: <%= rifornimento[:km_totali] %></li>
+  <li>prezzo: <%= rifornimento[:prezzo] %> €</li>    
+</ul>
+<% end %>
