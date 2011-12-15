@@ -35,9 +35,9 @@ class Scheda
   end 
   
   def genera_rifornimento(km_totali)
-    prezzo_benzina = rand((@prezzo_benzina)..(@prezzo_benzina+(@prezzo_benzina*@tolleranza)))
+    prezzo_benzina = ((@prezzo_benzina)..(@prezzo_benzina+(@prezzo_benzina*@tolleranza))).to_a.sample
     rifornimento = {}
-    rifornimento[:km] = (rand((@media_km - @media_km*@tolleranza)..(@media_km + @media_km*@tolleranza)) + 0.5).to_i
+    rifornimento[:km] = (((@media_km - @media_km*@tolleranza)..(@media_km + @media_km*@tolleranza)).to_a.sample + 0.5).to_i
     rifornimento[:km_totali] = (km_totali+rifornimento[:km]).to_i
     rifornimento[:prezzo] = ((rifornimento[:km]/@consumo) * prezzo_benzina + 0.5).to_i
     return rifornimento
