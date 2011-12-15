@@ -6,3 +6,6 @@
   <li>prezzo: <%= rifornimento[:prezzo] %> €</li>    
 </ul>
 <% end %>
+<p>Km percorsi: <%= scheda.rifornimenti.inject(0){|sum, item| sum += item[:km]} %> Km</p>
+<p>Totale: <%= scheda.rifornimenti.inject(0){|sum, item| sum += item[:prezzo]} %> €</p>
+

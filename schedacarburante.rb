@@ -12,7 +12,7 @@ end
 
 class Scheda
   
-  attr_accessor :km_iniziali, :km_percorsi, :numero_rifornimenti, :rifornimenti, :media_km, :tolleranza
+  attr_accessor :km_iniziali, :km_percorsi, :numero_rifornimenti, :rifornimenti, :media_km, :tolleranza, :totale
 
   def initialize(params = {})
     @prezzo_benzina = 160
@@ -24,6 +24,7 @@ class Scheda
     @numero_rifornimenti = params[:numero_rifornimenti].to_i
     @media_km = (@km_percorsi/@numero_rifornimenti).to_f
     @rifornimenti = []
+    @totale = 0
   end
   
   def calculate
@@ -31,6 +32,7 @@ class Scheda
     @numero_rifornimenti.times do
       @rifornimenti << genera_rifornimento(km_totali)
       km_totali+= @rifornimenti.last[:km]
+      @totale += @rifornimenti.last[:prezzo]
     end
   end 
   
