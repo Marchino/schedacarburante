@@ -15,7 +15,7 @@ class Scheda
   attr_accessor :km_iniziali, :km_percorsi, :numero_rifornimenti, :rifornimenti, :media_km, :tolleranza
 
   def initialize(params = {})
-    @prezzo_benzina = 1.6
+    @prezzo_benzina = 160
     @tolleranza = 0.1
     @consumo = params[:consumo].to_f
     @km_iniziali = params[:km_iniziali].to_f
@@ -35,9 +35,9 @@ class Scheda
   end 
   
   def genera_rifornimento(km_totali)
-    prezzo_benzina = ((@prezzo_benzina)..(@prezzo_benzina+(@prezzo_benzina*@tolleranza))).to_a.sample
+    prezzo_benzina = ((@prezzo_benzina)..(@prezzo_benzina+(@prezzo_benzina*@tolleranza))).to_a.sample/100.0
     rifornimento = {}
-    rifornimento[:km] = (((@media_km - @media_km*@tolleranza)..(@media_km + @media_km*@tolleranza)).to_a.sample + 0.5).to_i
+    rifornimento[:km] = (((@media_km - @media_km*@tolleranza).to_i..(@media_km + @media_km*@tolleranza).to_i).to_a.sample)
     rifornimento[:km_totali] = (km_totali+rifornimento[:km]).to_i
     rifornimento[:prezzo] = ((rifornimento[:km]/@consumo) * prezzo_benzina + 0.5).to_i
     return rifornimento
